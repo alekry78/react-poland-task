@@ -9,7 +9,7 @@ const Navigation = () => {
           </h1>
           <div className="buttons-container">
               <div className="add-todo">
-                  <span className="lnr lnr-plus-circle"></span>
+                  <NavLink to="/"><span className="lnr lnr-plus-circle"></span></NavLink>
                   <span className="add-todo-button">Add ToDo</span>
               </div>
               <div className="view-todos">
