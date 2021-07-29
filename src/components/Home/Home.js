@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Navigation from "../helpers/Navigation";
 import {connect} from 'react-redux';
 import {addTodo} from "../../actions/addTodo";
+import {NavLink} from "react-router-dom";
 const Home = ({addTodo}) => {
     const [todo,setTodo]=useState({
         id:'_' + Math.random().toString(36).substr(2, 9),
@@ -23,7 +23,8 @@ const Home = ({addTodo}) => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         addTodo(todo)
-        setTodo({
+        setTodo(
+            {
             id:'_' + Math.random().toString(36).substr(2, 9),
             name:"",
             desc:"",
@@ -35,7 +36,21 @@ const Home = ({addTodo}) => {
     return(
         <main className="home">
             <div className="container">
-                <Navigation />
+                <div className="nav">
+                    <h1 className="home-header">
+                        Simple Todo App
+                    </h1>
+                    <div className="buttons-container">
+                        <div className="add-todo">
+                            <NavLink to="/"><span className="lnr lnr-plus-circle"></span></NavLink>
+                            <span className="add-todo-button">Add ToDo</span>
+                        </div>
+                        <div className="view-todos">
+                            <NavLink to="/list"><span className="lnr lnr-menu"></span></NavLink>
+                            <span className="todo-list-button">View ToDos</span>
+                        </div>
+                    </div>
+                </div>
                 <div className="todo-form">
                     <h1 className="todo-form-header">New task</h1>
                     <label  className="todo-form-label" >task name:</label>

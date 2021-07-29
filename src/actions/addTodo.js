@@ -6,3 +6,10 @@ export const deleteTodo = key =>({
     type:'DELETE_TODO',
     payload:key
 })
+export const addCommentAction = (key,comment) =>({
+    type:'ADD_COMMENT',
+    payload:{
+        key,
+        comment
+    }
+})

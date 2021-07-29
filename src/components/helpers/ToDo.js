@@ -1,41 +1,75 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from "react-redux";
-import {deleteTodo} from "../../actions/addTodo";
+import {addCommentAction, addTodo, deleteTodo} from "../../actions/addTodo";
 
-const ToDo = ({todo,deleteTodo}) => {
+const ToDo = ({todo,deleteTodo,idx,addTodo}) => {
     const{
         id,
         name,
-        timestamp,
+        time,
         done,
-        description,
+        desc,
         comments
     } = todo
+    const [comment,setComment]=useState("")
+    const [addComment,setAddComment]=useState(false)
+    const [newComments,setNewComments]=useState(comments);
+    const handleAddComment = () => {
+        let handler = newComments;
+        handler.push(comment);
+        setNewComments(handler);
+        setAddComment(false)
+        setComment("");
+        addTodo({
+            id,
+            name,
+            desc,
+            time,
+            done,
+            comments:newComments
+        })
+        deleteTodo(idx);
+    }
+    const handleFinish = () =>{
+        addTodo({
+            id,
+            name,
+            desc,
+            time,
+            done:true,
+            comments
+        })
+        deleteTodo(idx);
+    }
     return(
       <div className="todo" key={id}>
-            <div>
-                <div>
-                    <h1>{name}</h1>
-                    <h3>{description}</h3>
+            <div className="todo-elements">
+                <div className="todo-details">
+                    {done ? <h1 className="todo-name-done">{name}</h1> :<h1 className="todo-name">{name}</h1>}
+                    {done ? <h3 className="todo-description-done">{desc}</h3> :<h3 className="todo-description">{desc}</h3>}
                 </div>
-                <div>
-                    <span>
-                        {timestamp}
+                <div className="todo-buttons">
+                    <span className="todo-time">
+                        {time > 60 ? `${Math.floor(time/60)}h${time%60}min` : `00h${time}min`}
                     </span>
-                    <button></button>
-                    {done ? null : <button>Finish</button>}
-                    <button onClick={() => deleteTodo(id)}>Delete</button>
+                    <button className="todo-add-com" onClick={()=>setAddComment(true)}>Add comment<span className="lnr lnr-plus-circle"></span></button>
+                    {done ? null : <button className="todo-finish" onClick={handleFinish}>Finish<span className="lnr lnr-checkmark-circle" /></button>}
+                    <button className="todo-edit">Edit<span className="lnr lnr-pencil" /></button>
+                    <button className="todo-delete" onClick={() => deleteTodo(idx)}>Delete<span className="lnr lnr-cross-circle" /></button>
                 </div>
             </div>
-          <div>
-              {comments.map(comment=>{
+          {addComment ? <div className="todo-add-comment">
+              <input type="text" value={comment} onChange={e=>setComment(e.target.value)}/>
+              <span className="lnr lnr-checkmark-circle" onClick={()=>handleAddComment()} />
+          </div> : null}
+          <div className="todo-comment-section">
+              {newComments.map((comment,i)=>{
                   return(
-                      <>
-                          <span>
+                      <div className="todo-comment" key={i}>
+                          <span className="todo-comment-text">
                               {comment}
                           </span>
-                          <button>Delete</button>
-                      </>
+                      </div>
                   )
               })}
           </div>
@@ -43,6 +77,7 @@ const ToDo = ({todo,deleteTodo}) => {
     )
 };
 const mapDispatchToProps = dispatch =>({
-    deleteTodo: key => dispatch(deleteTodo(key))
+    deleteTodo: key => dispatch(deleteTodo(key)),
+    addTodo: todo => dispatch(addTodo(todo))
 })
 export default connect(null,mapDispatchToProps)(ToDo)
