@@ -1,90 +1,105 @@
-.home{
-  width:100vw;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  .container{
-    max-width:1400px;
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    .home-header{
-      font-size:60px;
-      text-transform:uppercase;
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .home-header {
+      font-size: 60px;
+      text-transform: uppercase;
     }
-    .buttons-container{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      div.add-todo,div.view-todos{
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        margin:25px;
-        a{
-          text-decoration:none;
-          margin:10px;
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div.add-todo, div.view-todos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 25px;
+
+        a {
+          text-decoration: none;
+          margin: 10px;
         }
-        .add-todo-button,.todo-list-button{
-          font-size:35px;
-          text-transform:uppercase;
-          color:black;
+
+        .add-todo-button, .todo-list-button {
+          font-size: 35px;
+          text-transform: uppercase;
+          color: black;
         }
-        .lnr{
-          font-size:60px;
-          cursor:pointer;
+
+        .lnr {
+          font-size: 60px;
+          cursor: pointer;
         }
-        .lnr-menu{
-          color:blue;
+
+        .lnr-menu {
+          color: blue;
         }
-        .lnr-plus-circle{
-          color:green;
-          margin:10px;
+
+        .lnr-plus-circle {
+          color: green;
+          margin: 10px;
         }
       }
     }
-    .todo-form{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      justify-content:center;
-      padding:10px;
-      width:50%;
+
+    .todo-form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 10px;
+      width: 50%;
       box-shadow: 0px 0px 25px 10px #B9B9B9;
-      border-radius:5px;
-      .todo-form-header{
-        font-size:40px;
-        margin:10px 0;
+      border-radius: 5px;
+
+      .todo-form-header {
+        font-size: 40px;
+        margin: 10px 0;
       }
-      .todo-form-name,.todo-form-desc,.todo-form-time{
-        width:calc(100% - 10px);
-        border:1px solid #B9B9B9;
-        border-radius:5px;
-        margin:5px 0;
-        height:30px;
-        font-size:25px;
+
+      .todo-form-name, .todo-form-desc, .todo-form-time {
+        width: calc(100% - 10px);
+        border: 1px solid #B9B9B9;
+        border-radius: 5px;
+        margin: 5px 0;
+        height: 30px;
+        font-size: 25px;
       }
-      .todo-form-label{
-        margin:5px 0;
-        text-transform:uppercase;
+
+      .todo-form-label {
+        margin: 5px 0;
+        text-transform: uppercase;
       }
-      .add-task{
-        background-color:deepskyblue;
-        cursor:pointer;
-        border:none;
-        margin:5px 0;
-        border-radius:5px;
-        color:white;
-        padding:10px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        .lnr{
-          margin-left:5px;
+
+      .add-task {
+        background-color: deepskyblue;
+        cursor: pointer;
+        border: none;
+        margin: 5px 0;
+        border-radius: 5px;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .lnr {
+          margin-left: 5px;
         }
       }
     }
