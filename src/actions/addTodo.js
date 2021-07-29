@@ -13,3 +13,7 @@ export const addCommentAction = (key,comment) =>({
         comment
     }
 })
+export const editTodo = todo =>({
+    type:'EDIT_TODO',
+    payload:todo
+})

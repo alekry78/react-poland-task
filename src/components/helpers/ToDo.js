@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
-import {addCommentAction, addTodo, deleteTodo} from "../../actions/addTodo";
+import {addTodo, deleteTodo, editTodo} from "../../actions/addTodo";
+import {NavLink} from "react-router-dom";
 
-const ToDo = ({todo,deleteTodo,idx,addTodo}) => {
+const ToDo = ({todo,deleteTodo,idx,addTodo,editTodo}) => {
     const{
         id,
         name,
@@ -41,6 +42,17 @@ const ToDo = ({todo,deleteTodo,idx,addTodo}) => {
         })
         deleteTodo(idx);
     }
+    const handleEdit = () =>{
+        editTodo({
+            id,
+            name,
+            desc,
+            time,
+            done,
+            comments,
+            key:idx
+        })
+    }
     return(
       <div className="todo" key={id}>
             <div className="todo-elements">
@@ -54,7 +66,7 @@ const ToDo = ({todo,deleteTodo,idx,addTodo}) => {
                     </span>
                     <button className="todo-add-com" onClick={()=>setAddComment(true)}>Add comment<span className="lnr lnr-plus-circle"></span></button>
                     {done ? null : <button className="todo-finish" onClick={handleFinish}>Finish<span className="lnr lnr-checkmark-circle" /></button>}
-                    <button className="todo-edit">Edit<span className="lnr lnr-pencil" /></button>
+                    <NavLink to={`/list/${id}/edit`}><button className="todo-edit" onClick={handleEdit}>Edit<span className="lnr lnr-pencil" /></button></NavLink>
                     <button className="todo-delete" onClick={() => deleteTodo(idx)}>Delete<span className="lnr lnr-cross-circle" /></button>
                 </div>
             </div>
@@ -78,6 +90,7 @@ const ToDo = ({todo,deleteTodo,idx,addTodo}) => {
 };
 const mapDispatchToProps = dispatch =>({
     deleteTodo: key => dispatch(deleteTodo(key)),
-    addTodo: todo => dispatch(addTodo(todo))
+    addTodo: todo => dispatch(addTodo(todo)),
+    editTodo: todo => dispatch(editTodo(todo))
 })
 export default connect(null,mapDispatchToProps)(ToDo)
