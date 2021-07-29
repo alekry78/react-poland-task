@@ -38,7 +38,7 @@ const ToDo = ({todo,deleteTodo,idx,addTodo,editTodo}) => {
             desc,
             time,
             done:true,
-            comments
+            comments:newComments
         })
         deleteTodo(idx);
     }
